@@ -14,8 +14,10 @@ Class UserController extends Controller {
     }
 
     public function getUsers(){
+
         $users = User::all();
         
         return response()->json(['data' => $users], 200);
+        
     }
 }
