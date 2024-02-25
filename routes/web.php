@@ -17,5 +17,11 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-// more simple routes
-$router->get('/users',['uses' => 'UserController@getUsers']);
+// unsecure routes
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->get('/users',['uses' => 'UserController@getUsers']);//get all users
+});
+
+//more simple routes
+$router->get('/users', 'UserController@index'); // indexing
+$router->post('/users', 'UserController@addUser'); //create new user
