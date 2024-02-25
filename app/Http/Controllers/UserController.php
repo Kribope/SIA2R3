@@ -37,6 +37,8 @@ Class UserController extends Controller {
         return $this -> successResponse($users);
     }
 
+    //TO ADD USER
+    
     public function addUser(Request $request){
 
         $rules = [
@@ -52,4 +54,53 @@ Class UserController extends Controller {
         return $this->successResponse($user,Response::HTTP_CREATED);
 
     }   
+
+    //TO SHOW THE INFORMATION ON THE USER'S ID
+
+    public function show($id){
+
+        $user = User::findOrFail($id);
+
+        return $this->successResponse($user);
+
+    }
+
+    //UPDATE THE INFORMATION TO THE USER
+
+    public function update(Request $request,$id){
+
+        $rules = [
+        'username' => 'max:20',
+        'password' => 'max:20',
+        'gender' => 'in:Male,Female',
+        ];
+
+        $this->validate($request, $rules);
+        $user = User::findOrFail($id);
+
+        $user->fill($request->all());
+
+        // if no changes happen
+
+        if ($user->isClean()) {
+        return $this->errorResponse('At least one value must
+        change', Response::HTTP_UNPROCESSABLE_ENTITY);
+
+        }
+
+        $user->save();
+        return $this->successResponse($user);
+    }
+
+    //DELETE USERS DATA
+
+    public function delete($id){
+
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        return $this->successResponse($user);
+
+    }
 }
