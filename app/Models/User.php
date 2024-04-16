@@ -12,6 +12,7 @@
             'username', 'password', 'gender'
         ];
 
-        public $timespamps = false;
+        public $timestamps = false;
         protected $primaryKey = 'sid';
+        protected $hidden = ['password'];
     }
