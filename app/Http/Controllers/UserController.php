@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\UserJob;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
@@ -45,6 +45,7 @@ Class UserController extends Controller {
             'username' => 'required|max:20',
             'password' => 'required|max:20',
             'gender' => 'required|in:Male,Female',
+            'jobid' => 'required|numeric|min:1|not_in:0',
             ];
 
         $this->validate($request,$rules);
@@ -73,6 +74,7 @@ Class UserController extends Controller {
         'username' => 'max:20',
         'password' => 'max:20',
         'gender' => 'in:Male,Female',
+        'jobid' => 'required|numeric|min:1|not_in:0',
         ];
 
         $this->validate($request, $rules);
