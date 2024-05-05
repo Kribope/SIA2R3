@@ -83,6 +83,11 @@ $app->middleware([
     App\Http\Middleware\AuthenticateAccess::class,
 ]);
 
+$app->middleware([
+    App\Http\Middleware\AuthenticateAccess::class,
+]);
+    
+
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
